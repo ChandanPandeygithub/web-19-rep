@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #grid{
+        margin: auto;
+        margin-top: 20px;
+        width: 90%;
+        height: auto;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        gap: 5px;
+      }
+      #grid>div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 5px;
+        font-size: 17px;
+        border: 2px solid black;
+      }
+      #grid>div>img{
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+      }
+    </style>
+</head>
+<body>
+     <div id="counter"></div>
+    <div id="grid"></div>
+</body>
+</html>
+<script>
+  var productarray = JSON.parse(localStorage.getItem("p"))||[];
+  var deletedarray = JSON.parse(localStorage.getItem("deletedstudents"))||[];
+  var container = document.querySelector("#grid");
+    function display(productarray){
+      container.innerHTML =null;
+      productarray.forEach( function(element,index,arr){
+          console.log(container)
+    var dv = document.createElement("div");
+    var name= document.createElement("h2");
+    var category= document.createElement("p"); 
+    var image =document.createElement("img");
+    var price =document.createElement("p");
+    var gender =document.createElement("p");
+    var sold = document.createElement("p");
+     var removebtn = document.createElement("button");
+         removebtn.innerText="remove";
+         removebtn.addEventListener("click",function(){
+          removefun(element,arr,index);
+         });
+     var soldbtn = document.createElement("button");
+     soldbtn.innerText = "sold";
+        soldbtn.addEventListener("click",function(){
+         soldfun(arr,element)
+        });
+    name.innerText = element.name;
+    category.innerText = element.category;
+    image.src = element.image;
+    price.innerText = element.price;
+    gender.innerText = element.gender;
+    sold.innerText = element.sold;  
+      dv.append(image,name,category,price,gender,sold,removebtn,soldbtn);
+      container.append(dv)
+    
+});
+ countfun(productarray);
+} 
+function soldfun(arr,element){
+  if(element.sold=="false"){
+   element.sold = "true"
+  }else{
+    element.sold ="false";
+  }
+  display(arr);
+  //countfun(arr);
+}
+  function removefun(element,arr,index){
+    deletedarray.push(element);
+     deletedarray.push(element); 
+    localStorage.setItem("deletedstudents",JSON.stringify( deletedarray));
+    arr.splice(index,1);
+    localStorage.setItem("p",JSON.stringify(arr));
+    //window.location.reload();
+    display(arr)
+   // countfun(arr);
+  }
+//  arr.forEach(function(element){
+
+//  });
+  function countfun(arr){
+    var count =0;
+    var countdiv = document.querySelector("#counter");
+    countdiv.innerHTML =null;
+   arr.forEach(function(element){
+     count++;
+   });
+   var studentcount = document.createElement("h2");
+   studentcount.innerText =  "nomber of students ="+""+ count;
+   countdiv.append(studentcount);
+  }
+
+display(productarray);
+
+
+
+</script>
