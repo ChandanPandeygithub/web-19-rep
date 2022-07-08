@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <style>
+            #navbar{
+                width: 95%;
+                height: 120px;
+                border: 2px solid black;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                align-content: center;
+            }
+            #slideshow{
+                border: 2px solid black;
+                width: 95%;
+                height: 300px;
+            }
+            #slideshow>img{
+                width: 100%;
+                height: 100%;
+                
+            }
+            #movies{
+                width:  95%;;
+                border:  2px solid black;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 100px;
+                
+            }
+            #movies>div{
+              border: 2px solid black;
+              /* display: grid;
+              grid-template-columns: repeat(1,1fr);
+              grid-template-rows: repeat(auto,auto);
+              justify-content: center;
+              align-items: center;
+              align-content: center; */
+              display: flex;
+              flex-direction: column;
+              /* justify-content: center; */
+              align-items: center;
+              align-content: center;
+            }
+            #movies>div>img{
+              width: 100%;
+              height: auto;
+              border:  2px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="navbar">
+            <a href="#">
+                Home
+            </a>
+            <a href="login.html">
+                <div>login</div>
+            </a>
+           <a href="signup.html">
+            <div>Sign-Up</div>
+           </a>
+           <a href="#">
+            <div>RHs</div>
+           </a>
+            <!-- Give cart link for navigation with id:- cart   -->
+            <!-- For wallet amount Show only number i.e only "500", no extra text like "amount = 500" with id :- "wallet" -->
+          </div>
+        <div id="slideshow">
+            <!--Show Slideshow here-->
+           
+
+        </div>
+
+        <div id="sort-buttons">
+
+            <!--Add sorting here-->
+            <select  id="sortmovie" onchange="sortmovies()">
+              <option >Sort-Movie</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
+            </select>
+        </div>
+        <div id="movies">
+            <!--Show list of movies here-->
+        </div>
+    </body>
+
+</html>
+<script>
+    var i =0;
+    const images = [
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1689631/tifo-painting2.jpg", //0
+
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1689631/love-unite.jpg", //1
+
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1689631/ta-smoke.jpg", //2
+
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1689631/tifo-painting.jpg", //3
+
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1689631/sunshine.jpg"
+  //4
+];
+var solde = [
+  {
+    title: "Con Air",
+    releasedate: '2016',
+    image: 'https://www.placecage.com/100/150',
+    rating: 2,
+  }, 
+    {
+    title: 'Face off',
+    releasedate: "2017",
+    image: 'https://www.placecage.com/101/150',
+    rating: 30,
+  }, 
+    {
+    title: 'Next',
+    releasedate: '2018',
+    image: 'https://www.placecage.com/102/150',
+    rating: 12,
+  }, 
+  {
+    title: 'Movie X',
+    releasedate: '2019',
+    image: 'https://www.placecage.com/103/150',
+    rating: 22,
+  },
+   {
+    title: 'Movie XX',
+    releasedate: '2020',
+    image: 'https://www.placecage.com/101/151',
+    rating: 66,
+  },
+];    
+   localStorage.setItem("moviedata",JSON.stringify(solde));
+   var moviearray = JSON.parse(localStorage.getItem("moviedata"))||[];
+     localStorage.setItem("imageslide",JSON.stringify(images));
+    
+    function slideshow(){
+        var slide = document.querySelector("#slideshow");
+        var  imageslide = JSON.parse(localStorage.getItem("imageslide"));
+        setInterval(function(){
+            if(i==imageslide.length-1){
+            i=0;
+         }else{
+            i++;
+         }
+          var image = document.createElement("img");
+          image.src = imageslide[i];
+          slide.innerHTML= null;
+          slide.append(image);
+        },3000)
+    }
+    slideshow();
+    display(moviearray);
+       function display(moviearray){
+         var container = document.querySelector("#movies");
+          container.innerHTML =null;
+          moviearray.forEach(element => {
+             var moviecart = document.createElement("div");
+             var movieimage = document.createElement("img");
+             var movietitle = document.createElement("h2");
+             var movierelease = document.createElement("p");
+             var movierating = document.createElement("p");
+             movieimage.src = element.image;
+             movietitle.innerText = element.title;
+             movierelease.innerText = element.releasedate;
+             movierating.innerText = element.rating;
+             moviecart.append(movieimage,movietitle,movierelease,movierating);
+             container.append(moviecart);
+          });
+       };
+        
+       function sortmovies( ){
+
+          var selected = document.querySelector("#sortmovie").value;
+          if(selected =="Ascending"){
+          moviearray.sort(
+            function(a,b){
+              if(a.rating>b.rating) return 1;
+              if(a.rating<b.rating) return -1;
+              return 0;
+            }
+          );
+          }
+          if(selected=="Descending"){
+            moviearray.sort(
+            function(a,b){
+              if(a.rating>b.rating) return -1;
+              if(a.rating<b.rating) return 1;
+              return 0;
+            }
+          );
+          }
+          display(moviearray);
+        };
+</script>
