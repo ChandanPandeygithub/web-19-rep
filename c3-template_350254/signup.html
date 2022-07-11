@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+    <style>
+       #navbar{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        align-content: center;
+        font-size: 20px;
+      }
+      #form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        align-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="./index.html" id="home">Home</a>
+      <a href="./login.html" id="logIn">Log In</a>
+    </div>
+    <div id="form">
+      <h1>User Sign Up</h1>
+      <!-- - The input fields will have ids:- "name", "email" and "password"
+  - The sign-up button will have id:- "sign_up". -->
+  <input required type="text" placeholder="name" id="name">
+  <input required type="email" placeholder="email" id="email">
+  <input required type="password" placeholder="password" id="password">
+  <input type="submit" id="sign_up">
+
+    </div>
+  </body>
+</html>
+        <script>
+           var userarray = JSON.parse( localStorage.getItem("users"))||[];
+           var submitbtn = document.querySelector("#sign_up");
+           submitbtn.addEventListener("click",submitfun);
+            function submitfun(event){
+              event.preventDefault();
+              var name = document.querySelector("#name").value;
+              var email = document.querySelector("#email").value;
+              var password = document.querySelector("#password").value;
+               var obj ={};
+               obj.name = name;
+               obj.email = email;
+               obj.password =password;
+              checkemail(obj.email);
+              if(checkemail(obj.email)==true){
+                userarray.push(obj);
+                localStorage.setItem("users",JSON.stringify(userarray));
+                //window.location.href="login.html";
+              }else{
+                alert("user alredy exist");
+              }
+            }
+
+            function checkemail(email){
+              var Filter=userarray.filter(
+                function(element){
+                 return element.email ==email;
+                })
+               if(Filter.length>0){
+                 return  false
+               }else{
+                return true;
+               }
+            }
+        </script>
