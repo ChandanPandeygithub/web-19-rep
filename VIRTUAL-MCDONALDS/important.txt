@@ -1,0 +1,107 @@
+ fetch(apiurl).then(function(res){
+
+        return res.json();
+        
+     }).then(function(res){
+
+        console.log(res)
+     }).catch(function(er){
+        console.log(er)
+     })
+
+
+   //  youtube api key is -->   AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0
+
+
+   'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=kgf&key=[YOUR_API_KEY]'
+
+
+
+
+
+
+
+-------------------------
+//Enter code here
+  function rotate(arr,n){
+    var t =0;
+    var l =0;
+    var b = arr.length-1;
+    var r = arr.length-1;
+    var count =0;
+    var pre =0;
+    var temp =0;// pre[0][0]=pre[1][0];//pre[1][1]=pre[2][1]
+    while(count<n*n){ 
+    for( let i=l;i<=r&&count<n*n;i++){
+        if(i==0){
+        pre = arr[t+1][i];
+        }
+        temp = arr[t][i];
+        arr[t][i] = pre;
+        pre = temp;
+        count++
+    }
+    t++;
+    for(let j=t;j<=b&&count<n*n;j++){
+        temp =arr[j][r];
+        arr[j][r]=pre;
+        pre =temp;
+        count++
+    }
+    r--;
+    for(let k=r;k>=l&&count<n*n;k--){
+        temp = arr[b][k];
+        arr[b][k]=pre;
+        pre = temp;
+        count++
+    }
+    b--;
+    for(let m=b;m>=t&&count<n*n;m--){
+     temp = arr[m][l];
+     arr[m][l]=pre;
+     pre = temp;
+     count++
+    }
+    l++;
+  }
+}
+function runProgram(input) {
+ input = input.trim().split("\n");
+var n = +input[0];
+   //console.log(n);
+var array = [];
+for(var i=1;i<=n;i++){
+    var arr = input[i].trim().split(" ").map(Number);
+    array.push(arr);
+}
+   rotate(array,n);
+ for(var i=0;i<array.length;i++){
+     var sum="";
+     for(var j=0;j<array.length;j++){
+         sum += array[i][j]+" ";
+     }
+     console.log(sum.trim());
+ }
+  
+  //console.log(array);
+}
+if (process.env.USER === "") {
+  runProgram(``);
+} else {
+  process.stdin.resume();
+  process.stdin.setEncoding("ascii");
+  let read = "";
+  process.stdin.on("data", function (input) {
+    read += input;
+  });
+  process.stdin.on("end", function () {
+    read = read.replace(/\n$/, "");
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+  });
+  process.on("SIGINT", function () {
+    read = read.replace(/\n$/, "");
+    runProgram(read);
+    process.exit(0);
+  });
+}

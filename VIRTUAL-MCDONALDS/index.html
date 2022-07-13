@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       #order{
+        margin: auto;
+        width: 95%;
+        height: auto;
+        /* border: 2px solid black; */
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        gap: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+      #order>div>img{
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+      }
+      #freshcuts{
+        margin: auto;
+        width: 95%;
+        height: auto;
+        /* border: 2px solid black; */
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        gap: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+      #freshcuts>div>img{
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+      }
+      #freshcuts>div>button{
+        background-color:#437111 ;
+        color: #ebf0e6;
+        width: 99%;
+        height: 50px;
+        font-size: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+
+      /* #fruitsdiv>div>button :hover {
+        color: red;
+      } */
+      #freshcuts>div{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+        /* border-radius: 20px; */
+      }
+   
+    </style>
+  </head>
+
+  <body>
+     <div id="freshcuts"></div>
+     <button id="orderbtn" onclick="showorder()">Order</button>
+     <div id="order"></div>
+  </body>
+</html>
+
+<script>
+   var freshcuts =[
+      {
+        "img": "https://cdn.shopify.com/s/files/1/0449/5225/6667/products/47dfb7d1-d8d3-4c96-bda9-7dc85dfdec51_360x.png?v=1613364164",
+        "choosefruit": "Oder Food",
+        "fruitname": "Pomegranate Seeds (Arils Cup)125g",
+        "clicked": "false",
+        "id" : 1,
+      },
+      {
+        "img": "https://cdn.shopify.com/s/files/1/0449/5225/6667/products/24d0f9c9-fe83-40a3-84ab-300e73e4ff8d_360x.png?v=1611811511",
+        "choosefruit": "Oder Food",
+        "fruitname": "Coconut Chunks Cup(100g)",
+        "clicked": "false",
+        "id" : 2,
+      },
+      {
+        "img": "https://cdn.shopify.com/s/files/1/0449/5225/6667/products/0fce7fd6-f30e-45df-8c52-234acbd62023_360x.png?v=1611811509",
+        "choosefruit": "Oder Food",
+        "fruitname": "Grated Coconut Punnet",
+        "clicked": "false",
+        "id" : 3,
+      },
+      {
+        "img": "https://cdn.shopify.com/s/files/1/0449/5225/6667/products/62cef687-de59-4f5a-acf3-4df1238c3e29-min_360x.png?v=1614324446",
+        "choosefruit": "Oder Food",
+        "fruitname": "Kimaye Arils-Coco Cup(125G)",
+        "clicked": "false",
+        "id" : 4,
+      },
+
+    ]
+
+    let cartarr=JSON.parse(localStorage.getItem("MohitVarma"))||[];
+     var selected =  JSON.parse(localStorage.getItem("selected"))||[];
+    // freshcuts.forEach(function (element, index, a) {
+    //   var item = cartarr.filter(function(e) {
+    //             return element.id == e.id;
+    //            });
+    //     element.clicked = item[0].clicked;
+    // });
+
+    //var clickedarray = JSON.parse(localStorage.getItem("clickeddata"))||[];
+    
+    freshcutsfun(freshcuts);
+    
+    function freshcutsfun(arr){
+        document.querySelector("#freshcuts").innerHTML="";
+        arr.forEach(function(element,index,a){
+        dv = document.createElement("div");
+        img = document.createElement("img");
+        //addtocart = document.createElement("button");
+        pn = document.createElement("p");
+        pp = document.createElement("p");
+        clickedbtn = document.createElement("input");
+        clickedbtn.type = "checkbox";
+        clickedbtn.id = element.id 
+           clickedbtn.addEventListener("change", function(){
+            checkboxbtn(element,index,a);
+           });
+           img.src = element.img;
+        //  addtocart.innerText = element.choosefruit;
+        //  addtocart.addEventListener("click",function(){
+        //     addtocartfun(element,index);
+        //   })
+          pn.innerText= element.fruitname;
+         pn.style.fontSize="17px";
+         pp.innerText=element.clicked;
+         pp.style.color = "red";
+         pp.style.fontSize = "25px";
+         dv.append(img,clickedbtn,pn,pp);
+        document.querySelector("#freshcuts").append(dv);   
+      });
+    }
+    function  addtocartfun(element){
+      
+       // cartarr.push(element);
+       // console.log(cartarr)
+       // localStorage.setItem("cartdata",JSON.stringify(cartarr))
+      //  arr.forEach(function(element){
+      //      console.log(element);
+      //  });
+      }
+       
+      // function checkboxbtn(element,index)
+      //  {     
+      // if(clickedbtn.clicked==true){
+      // selected.push(element);
+      // localStorage.setItem("selected",JSON.stringify(selected));
+      // }
+      
+      // if(checkboxbtn.checkboxbtn==false){
+      //   selected.splice(index,1);
+      //   localStorage.setItem("selected",JSON.stringify(selected));
+      // }
+//}         
+        function checkboxbtn(element,index,a){
+            if(element.clicked=="false"){
+              element.clicked="true";
+             
+            }else{
+              element.clicked ="false";
+              
+            }
+            //console.log(element);
+              // if(element.clicked=="true"){
+              //   selected.push(element);
+              //   selected = selected.filter(function(ele){
+              //     console.log(element)
+              //     return ele.id !=element.id;
+              //   });
+              // localStorage.setItem("selected",JSON.stringify(selected));
+              // }
+              //else{
+              //   selected.splice(index,1);
+              // localStorage.setItem("selected",JSON.stringify(selected))
+              // }
+            //console.log(element.clicked)
+            freshcutsfun(a)
+            }
+         function showorder(){
+           let container = document.querySelector("#order");
+             container.innerHTML =null;
+            freshcuts.forEach(function(element){
+              if(element.clicked=="true"){
+              var cart = document.createElement("div");
+              var image = document.createElement("img")
+              var id = document.createElement("p");
+              image.src = element.img;
+              id.innerText = "product id  "+element.id;
+              image.style.width="100%"
+              image.style.height = "auto";
+              cart.append(image,id);
+              container.append(cart);
+              }
+            })
+         }
+
+</script>
