@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+    <style>
+      #navbar {
+        margin: auto;
+        width: 95%;
+        display: flex;
+        border: 2px solid black;
+        justify-content: space-evenly;
+      }
+      #sdb {
+        width: 95%;
+        border: 2px solid black;
+        margin: auto;
+        height: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h3>
+        <a href="./index.html">home</a>
+      </h3>
+      <input  type="text" placeholder="search" id="search_input" />
+      <button id="btn">enter</button>
+    </div>
+    <div id="sdb">
+      <select onchange="getcountry" id="sidebar">
+        <option>select</option>
+        <option value="in">india</option>
+        <option value="us">usa</option>
+        <option value="vh">chine</option>
+        <option value="uk">uk</option>
+        <option value="nz">Newzeland</option>
+      </select>
+    </div>
+    <div id="srcdata"></div>
+    <!-- Give Navbar with id "navbar"  -->
+    <!-- Navbar will have input with id search_input and a link to home page i.e. index.html -->
+    <!-- Sidebar will have id "sidebar"  -->
+    <!-- Give link to top headlines of countries in sidebar with id as their country codes 
+    india :- in
+    china :- ch
+    usa :- us
+    uk : uk
+    Newzeland :- nz -->
+
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+
+    <div id="results"></div>
+  </body>
+</html>
+<script src="./scripts/index.js">
+
+        
+</script>
