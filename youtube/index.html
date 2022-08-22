@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(auto,auto);
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 10px;
+            margin: auto;
+            width: 95%;
+
+        }
+        #contianer>div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 2px;
+           /* border: 20x solid red; */
+        }
+        #container>div>img{
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="name of the vedio" id="query">
+    <button onclick="myfun()">search</button>
+    <select  onchange="changefun(this.value)" >
+        <option disabled>categoryew</option>
+        <option value="video">video</option>
+        <option value="channel">channel</option>
+        <option value="playlist">playlist</option>
+    
+    </select>
+    <select  onclick="mydue(this.value)">
+        <option disabled>duration</option>
+      <option value="long">long</option>
+    <option value="medium">medium</option>
+   <option value="short">sort</option>
+    </select>
+    <input type="text" value="" placeholder="date and time" id="date">
+    <button ondblclick="datefun()">after_date</button>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    async function datefun(){
+        let query= document.getElementById('query').value;
+        let data = document.getElementById("date").value
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=45&publishedAfter=${data}&q=${query}&key=AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0`);
+        let{items}= await res.json()
+        append_vedio(items);
+    }
+   async  function mydue(duration){
+        let query = document.getElementById('query').value
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=45&q=${query}&type=video&videoDuration=${duration}&key=AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0`);
+        let {items}= await res.json();
+        append_vedio(items)
+     }
+     async function changefun(type){
+        let query = document.getElementById("query").value
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=45&q=${query}&type=${type}&key=AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0`);
+        let {items}= await res.json();
+        append_vedio(items)
+      }
+       /* 
+       channel
+playlist
+video
+       */
+      //https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=45&q=kgf&type=video&videoDuration=any&key=[YOUR_API_KEY]
+      //  'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=45&q=kgf&type=chennel&key=[YOUR_API_KEY]'
+        
+
+    //'https://youtube.googleapis.com/youtube/v3/search?maxResults=45&q=${query}&key=${AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0}'
+   let container = document.getElementById("container")
+   let clicked_v = JSON.parse(localStorage.getItem("clicked_v"))||[]
+  async function myfun(){
+    try{
+        let query = document.getElementById("query").value;
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?maxResults=45&q=${query}&key=AIzaSyDT_dE7UEllb276eL72_HuDPlrD54uEpo0&part=snippet`);
+        let {items} = await res.json();
+        append_vedio(items)
+        console.log(items)
+    }catch(err){
+        console.log(err)
+    }
+
+    }
+      function append_vedio(array){
+       container.innerHTML =null;
+       array.forEach(function( ele,index,arr){
+         let { snippet: { title, thumbnails: { default: { url } }, channelTitle, publishTime }, id: { videoId } }=ele;
+        let div = document.createElement("div");
+        let Title = document.createElement("p");
+        let channel_Title = document.createElement("p");
+        let publish_Time = document.createElement("p");
+        let image = document.createElement("img");
+        image.src = url
+       // let iframe= document.createElement("iframe");
+        //iframe.src = `https://www.youtube.com/embed/${videoId}`
+         //iframe.src = url
+       // iframe.width="100%"
+       // iframe.height="auto";
+        //iframe.allow = "fullscreen"
+        Title.innerHTML = title;
+        channel_Title.innerText=channelTitle;
+        publish_Time.innerText=publishTime;
+         div.append(image,title,channel_Title,publish_Time);
+         div.addEventListener("click", function(){
+            savefun(ele);
+         } )
+       
+        
+       container.append(div);
+       });
+      }
+      function savefun(ele){
+    //     arr.forEach(function({snippet,id}){
+    //         console.log(snippet,id)
+    //     });
+    //   }
+      
+      let savearr =[];
+      savearr.push(ele);
+       localStorage.setItem("clicked_v", JSON.stringify(savearr))
+       window.location.href="savedv.html";
+    }
+   // <iframe width="560" height="315" src="https://www.youtube.com/embed/HbbYPQc-Oo4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    /*  let data = {
+            title,
+            channelTitle,
+            publishTime,
+            videoId
+        }
+        div.onclick = () => {
+            let temp = JSON.parse(localStorage.getItem("clicked_v")) || [];
+
+            let f = temp.filter(function (ele) {
+                return ele.videoId != data.videoId
+            })
+            f.push(data);
+            temp = f;
+           
+            console.log(clicked_v)
+        }
+        */
+       class snippetandid{
+        constructor(snippet,id){
+            this.snippet = snippet;
+            this.id = id;
+        }
+       }
+</script>
