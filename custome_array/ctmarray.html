@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    function myarray() {
+            for (let i = 0; i < arguments.length; i++) {
+                this[i] = arguments[i]
+            }
+            this.length = arguments.length;
+            Object.defineProperty(this, 'length', {
+                writable: true,
+                enumerable: false,
+            })
+
+            // this.arr=a;
+
+            //  for(let i=0;i<this.len;i++){
+            //     this.array[i]=a[i]
+            //  }
+        }
+
+
+        let a = new myarray(1, 3, 4, 5, 6)//arguements to constructor fuction
+        // console.log(Object.values(a))
+        // console.log(a.length)
+        myarray.prototype.myPush = function (el) {
+            this[this.length] = el;
+            this.length++
+        }
+       // let arr = new Array(1, 2, 3, 4, 5)
+        // console.log(arr)
+       // a.myPush("Chandan");
+        console.log(Object.values(a))
+        myarray.prototype.mypop = function(){
+            delete this[this.length-1];
+        }
+        a.mypop()
+        console.log(Object.values(a))
+
+</script>
