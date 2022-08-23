@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    /* #weather{
+        margin: auto;
+        margin-top: 2%;
+        width: 95%;
+        height: auto;
+        border: 2px solid black;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        gap: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+         } */
+    #container {
+      margin: auto;
+      width: 95%;
+      height: fit-content;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(auto, auto);
+      justify-content: space-evenly;
+      align-items: center;
+      align-content: center;
+      gap: 10px;
+      border: 2px solid black;
+    }
+
+    #container>div {
+      border: 2px solid red;
+    }
+
+    .gmap_canvas {
+      overflow: hidden;
+      background: none !important;
+      height: 500px;
+      width: 600px;
+    }
+
+    /* #weatger>div>img{
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+      } */
+    #daily {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(auto, auto);
+      gap: 10px;
+      margin: auto;
+      width: 95%;
+      height: auto;
+      border: 2px solid black;
+    }
+
+    #daily>div {
+      border: 2px solid red;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body onload="myfun(success,error)">
+  <h1 id="latitude"></h1>
+  <h1 id="longitude"></h1>
+  <h1 id="accuracy"></h1>
+  <h1 id="err"></h1>
+
+  <input type="text" name="" id="city" />
+  <button id="search">search</button>
+  <div id="container">
+    <div id="weather"></div>
+    <iframe width="600" height="500" id="gmap_canvas" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+    </iframe>
+  </div>
+  <div id="daily"></div>
+</body>
+
+</html>
+<script>
+  let latitude = document.getElementById("latitude");
+  let longitude = document.getElementById('longitude');
+  let accuracy = document.getElementById("accuracy");
+  let errormassage = document.getElementById("err")
+  let mymapkey = `AIzaSyAwFQBjuqHi-evYY9A4XfUqE7QZYKCaiUw`;
+  var arr = JSON.parse(localStorage.getItem("w")) || [];
+  var srcbtn = document.querySelector("#search");
+  srcbtn.addEventListener("click", getdata);
+  async function getdata() {
+    let query = document.querySelector("#city").value;
+    let apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=18e3ec53291696c0f0cb03e3082cc1dc`;
+
+    try {
+      let res = await fetch(apiurl);
+      let dd = await res.json();
+      console.log(dd)
+      let { coord } = dd;
+      let { lat, lon } = coord;
+      let r = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=7&appid=f1b0a6a2405f5b16e0e8468613d55bde&units=metric`)
+      let { list } = await r.json()
+
+
+      app(dd);
+      days(list)
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
+  function app({ name, main, sys, weather, wind, coord, id, clouds }) {
+    var container = document.querySelector("#weather");
+    container.innerHTML = null;
+
+    let ur = `https://www.google.com/maps/embed/v1/place?key=AIzaSyD6syEK_geIig-OcPGhgO_U3_4Lgz1XA7E&q=${name}`
+    let cart = document.createElement("div");
+    let Name = document.createElement("p");
+    let Clouds = document.createElement("p");
+    let tmax = document.createElement("p");
+    let tmin = document.createElement("p");
+    // let  country =document.createElement("p");
+    let Sunrise = document.createElement("p");
+    let Sunset = document.createElement("p");
+    let Speed = document.createElement("p");
+    let Deg = document.createElement("p");
+    let Gust = document.createElement("p");
+    Name.innerText = name;
+    Clouds.innerText = clouds.all;
+    tmax.innerText = main.temp_max;
+    tmin.innerText = main.temp_min;
+    Sunrise.innerText = sys.sunrise;
+    Sunset.innerText = sys.sunset;
+    Speed.innerText = wind.speed;
+    Deg.innerText = wind.deg;
+    Gust.innerText = wind.gust;
+    cart.append(Sunrise, Sunset, tmax, tmin, Name, Clouds, Speed, Deg, Gust);
+    container.append(cart);
+    let fr = document.querySelector("#gmap_canvas");
+    fr.src = ur;
+  }
+
+  function days(Array) {
+    let daily = document.getElementById("daily");
+    daily.innerHTML = "";
+    Array.forEach(function ({ main, weather, dt_txt }) {
+      let div = document.createElement('div');
+
+      let icon = document.createElement('p');
+      let min = document.createElement("p");
+      let max = document.createElement("p");
+      let data_and_time = document.createElement("p");
+      icon.innerText = weather[0].icon;
+      min.innerText = main.temp_min;
+      max.innerText = main.temp_max;
+      data_and_time.innerText = dt_txt;
+      div.append(icon, min, max, data_and_time);
+      daily.append(div);
+    });
+  }
+ 
+  function success(pos) {
+    let { coords } = pos;
+    latitude.innerText = coords.latitude;
+    longitude.innerText = coords.longitude;
+    accuracy.innerText = coords.accuracy;
+
+    console.log(pos)
+
+  }
+
+  function error(err) {
+    let { message } = err;
+    errormassage.innerText = message;
+    console.error(err)
+
+  }
+   function myfun(success, error) {
+      navigator.geolocation.getCurrentPosition(success, error);
+
+    }
+       // const apiurl = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${query}&units=metric&cnt=8&appid=18e3ec53291696c0f0cb03e3082cc1dc`;
+        //const apiurl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=f1b0a6a2405f5b16e0e8468613d55bde`;
+       //api.openweathermap.org/data/2.5/forecast/daily?zip=94040,us&appid={API key}
+            // let r = await fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?zip=${id},${sys.country}&cnt=10&appid=18e3ec53291696c0f0cb03e3082cc1dc`);
+      // let ur =
+        //   `https://maps.google.com/maps?q=${name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        // let ur = `https://www.google.com/maps/embed/v1/place?key=${mymapkey}&q=${name}`
+</script>

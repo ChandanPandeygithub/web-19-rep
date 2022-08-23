@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body onload="myfun(success,error)">
+  <h1 id="latitude"></h1>
+  <h1 id="longitude"></h1>
+  <h1 id="accuracy"></h1>
+  <h1 id="err"></h1>
+
+
+</body>
+
+</html>
+<script>
+  let latitude = document.getElementById("latitude");
+  let longitude = document.getElementById('longitude');
+  let accuracy = document.getElementById("accuracy");
+  let errormassage = document.getElementById("err")
+  function myfun(success, error) {
+    navigator.geolocation.getCurrentPosition(success, error);
+
+  }
+  function success(pos) {
+    let { coords } = pos;
+    latitude.innerText = coords.latitude;
+    longitude.innerText = coords.longitude;
+    accuracy.innerText = coords.accuracy;
+
+    console.log(pos)
+
+  }
+
+  function error(err) {
+    let { message } = err;
+    errormassage.innerText = message;
+    console.error(err)
+
+  }
+</script>
