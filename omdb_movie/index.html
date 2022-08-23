@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #movies {
+        margin: auto;
+        margin-top: 2%;
+        width: 95%;
+        height: auto;
+        /* border: 2px solid black; */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto, auto);
+        gap: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+      #movies > div > img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" name="" id="query" />
+    <button id="search">search</button>
+    <button onclick="sortfun()" id="sort">sort</button>
+    <button onclick="filterfun()">filter>2021</button>
+    <div id="movies"></div>
+  </body>
+</html>
+<script>
+  let sortarr =[];
+  let sortbtn = document.getElementById("sort");
+  var searchbtn = document.querySelector("#search");
+  var container = document.querySelector("#movies");
+  searchbtn.addEventListener("click", getdata);
+  function sortfun(){
+    sortarr.sort(function(a,b){
+      return a.Year-b.Year;
+    });
+    appender(sortarr)
+  }
+   function filterfun(){
+    let f = sortarr.filter(function(ele){
+      return ele.Year>=2021;
+    })
+    appender(f);
+   }
+  function appender(arra) {
+    container.innerHTML = null;
+    arra.forEach(function (element, index, a) {
+      var cart = document.createElement("div");
+      var avtar = document.createElement("img");
+      avtar.src = element.Poster;
+      var name = document.createElement("p");
+      name.innerText = element.Title;
+      var rating = document.createElement("p");
+      var type = document.createElement("p");
+      type.innerText = element.Type;
+      var year = document.createElement("p");
+      year.innerText= element.Year;
+      var id = document.createElement("p");
+      id.innerText= element.imdbID;
+      let number = Math.random()*10+1;
+      rating.innerText = ` rating ${number}`;
+      
+      if(number>8.5){
+        let recomanded = document.createElement("p");
+        recomanded.innerText= "recomanded";
+         cart.append(avtar, name, type, year, id, rating,recomanded);
+        container.append(cart);
+       }else{
+         cart.append(avtar, name, type, year, id,rating);
+        container.append(cart);
+       }
+
+    });
+  }
+  async function getdata() {
+    // console.log(query)
+    try{
+      let x = document.getElementById("query").value;
+      const apiurl = `http://www.omdbapi.com/?apikey=35712e5e&s=${x}`;
+      var res = await fetch(apiurl);
+      var {Search} = await res.json();
+      sortarr= Search;
+      console.log(Search)
+      appender(Search);
+    }catch(err){
+      console.log(err)
+    }
+    //Response: 'False', Error: 'Movie not found!'
+    // if (data.Response == "true") {
+    //   let a = [];
+    //   console.log(data.Search);
+    //   a.push(data.Search);
+    // } else {
+    //   alert(data.Error);
+    // }
+  }
+  // data.Response == "False"
+  //   let container = document.querySelector("#movies");
+  //   alert("movei not found");
+  //   var gif = document.createElement("div");
+  //   let image = document.createElement("img");
+  //   image.src = "https://bitsofco.de/content/images/2018/12/broken-1.png";
+  //   gif.append(image);
+  //   container.innerHTML = null;
+  //   container.append(gif);
+
+  //
+
+  //ad.push(data)
+</script>
