@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/index.css">
+   <style>
+    #dish{
+        margin: auto;
+        margin: 2%;
+        width: 70%;
+        text-align: center;
+        height: 100px;
+        color: red;
+         background-color: black;
+         padding: 5px;
+    }
+   </style>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <h1 id="dish">for example type dish name => " Arrabiata"</h1>
+    <div id="container"></div>
+</body>
+
+</html>
+<script type="module">
+    let data;
+    import navbar from './components/navbar.js';
+    import { gatedata, append_data } from './script/fetchandappend.js';
+    let nav = document.getElementById("navbar");
+    nav.innerHTML = navbar();
+    let container = document.getElementById("container")
+    let search = document.getElementById("search");
+    search.addEventListener('keypress', myfun);
+    //let url = `www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`;
+
+  async   function myfun(e) {
+        if (e.key == "Enter") {
+           // let query = document.getElementById("search").value;
+            // console.log(e.target.value);
+           // console.log(query);
+            let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${e.target.value}`;
+            let res = await gatedata(url);
+            console.log(res, e);
+           append_data(res, container);
+        }
+        
+
+    }
+    //https://fakestoreapi.com/products/category/jewelery
+</script>
+<!-- <script>
+  // let url = `https://www.themealdb.com/api/json/v1/1/random.php`;
+        async function gatedata() {
+            try {
+                let res = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`);
+                let {meals} = await res.json();
+                console.log(meals);
+                // return data;
+            } catch (err) {
+
+                console.log(err);
+            }
+        }
+        gatedata();
+</script> -->

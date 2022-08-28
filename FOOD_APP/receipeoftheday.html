@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <div id="container"></div>
+</body>
+</html>
+<script type="module">
+    import navbar from './components/navbar.js';
+    import {gatedata,append_data} from './script/fetchandappend.js';
+
+    let nav = document.getElementById("navbar");
+    let container = document.getElementById("container");
+    nav.innerHTML=navbar();
+    let url = `https://www.themealdb.com/api/json/v1/1/random.php`;
+    
+    let res = await gatedata(url);
+     append_data(res,container);
+
+</script>

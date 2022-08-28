@@ -1,0 +1,24 @@
+
+#container{
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(auto,auto);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    
+    border: 2px solid black;
+}
+#container>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+#container>div>img{
+    width: 100%;
+}
