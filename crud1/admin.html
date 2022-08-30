@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 95%;
+            margin: auto;
+            border: 2px solid black;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(auto,auto);
+            gap: 10px;
+            margin-top: 2%;
+        }
+        #container>div{
+            display:flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div>
+<h1>Add product</h1>
+<input type="text" placeholder="id" id="id">
+<input type="text" placeholder="title" id="title">
+<input type="text" placeholder="author" id="author">
+ <button onclick="addproduct()">submit</button>
+    </div>
+    
+    <div>
+        <h1> Delete product</h1>
+        <input type="text" placeholder="id"  id="delete">
+        <button onclick="deletepost()">detete</button>
+    </div>
+
+    <div>
+        <h1>Update Post</h1>
+        <input type="text" placeholder="id" id="nid">
+        <input type="text" placeholder="title" id="ntitle">
+        <button onclick="updateproduct()">submit</button>
+    </div>
+   
+    <div>
+        <h1> Replace title and id</h1>
+        <input type="text" placeholder="u id"  id="uid">
+        <input type="text"  placeholder="u title" id="utitle">
+        <button onclick="replacepost()">submit</button>
+
+
+    </div>
+
+    
+  
+    <div>
+        <h1>diffrent</h1>
+<input type="text" id="name" placeholder="name">
+<input type="email" placeholder="email" id="email">
+<input type="text" placeholder="username" id="uname">
+<input type="password" placeholder="password" id="pass">
+<input type="tel" placeholder="tel" id="number">
+<input type="text" placeholder="desc" id="desc">
+<button onclick="register()">submit</button>
+    </div>
+    
+<div id="container">
+
+</div>
+</body>
+</html>
+<script src="admin.js"></script>
