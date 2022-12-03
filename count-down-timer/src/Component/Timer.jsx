@@ -23,6 +23,9 @@ function Timer(){
      handleStop()
      setTime(0);
   }
+  useEffect(()=>{
+  return  handleStop();
+  },[]);
     return(<div>
         <h1>{time}</h1>
         <button onClick={handleStart}>start</button>
