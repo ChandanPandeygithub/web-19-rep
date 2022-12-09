@@ -1,0 +1,155 @@
+[
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/19/00/50/91/19005091_41386924_480.jpg",
+    "brand": "aefasdf",
+    "category": "Clothes",
+    "desc": "abstract-print short-sleeve shirt",
+    "details": "Made in Italy",
+    "price": "55",
+    "id": 1
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/17/07/53/01/17075301_34599518_480.jpg",
+    "brand": "dfsljl",
+    "category": "Clothes",
+    "desc": "logo-intarsia short-sleeve knitted top",
+    "details": "This ilsdjflskjiglks knitted T-shirt is an ode to the brand's minimalist aesthetic. Made from navy cashmere, this piece comes with a relaxed cut and is detailed with the brand's intarsia-knit logo on the front.",
+    "price": "22",
+    "id": 2
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/58/96/60/18589660_40695283_480.jpg",
+    "brand": "dklfjsld;f",
+    "category": "Clothes",
+    "desc": "Re-Nylon hooded jacket",
+    "details": "ECONYL® is a regenerated-nylon yarn that can be recycled an indefinite number of times without affecting the quality of the material. The partnership between djs;jfs and textile yarn producer Aquafil has resulted in technical pieces such as this Re-Nylon hooded jacket - a lightweight design realized in a bright red hue and detailed with logo lettering at the chest.",
+    "price": "00",
+    "id": 3
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/83/32/29/18833229_40946327_480.jpg",
+    "brand": "dlsfjsdjf",
+    "category": "Clothes",
+    "desc": "double-breasted wool jacket",
+    "details": "ldfj;f updates a classic silhouette with this tailored design for AW22. Offered in a versatile black colourway, this blazer is elevated by faux-fur detailing to the sleeves for a striking finish that exhibits the brand's ability to combine tradition with a playful aesthetic.",
+    "price": "60",
+    "id": 4
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/31/81/79/18318179_39167905_480.jpg",
+    "brand": "flskdfslkfs",
+    "category": "Belt",
+    "desc": "triangle-logo leather belt",
+    "details": "dfiksdhflskjf showcases a minimalist design with this belt. Crafted from leather in a refined black hue, it is detailed with the brand's iconic triangle logo with complementary silver-tone detailing.",
+    "price": "111",
+    "id": 5
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/16/43/20/78/16432078_31755998_480.jpg",
+    "brand": "dfjsdjfsl",
+    "category": "Scarf",
+    "desc": "jacquard fringed scarf",
+    "details": "Cold weather calls for one thing. A soft cashmere scarf to keep you warm in style. You'll never want to take this jacquard dfs;lfks piece off.",
+    "price":" 87665",
+    "id": 6
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/84/59/47/18845947_41161712_480.jpg",
+    "brand": "dfjsldjfs",
+    "category": "Clothes",
+    "desc": "tailored wool trousers",
+    "details": "dfjsldjfs takes classic silhouettes and updates them with refreshing details. A fine example, these trousers are defined by their traditional design and are accented with slant pockets and back welt pockets that add modern flair.",
+    "price": "90",
+    "id": 7
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/39/51/11/18395111_39426716_480.jpg",
+    "brand": "dfjsldjfs",
+    "category": "Clothes",
+    "desc": "abstract-jacquard polo shirt",
+    "details": "Made in Italy",
+    "price": "876",
+    "id": 8
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/24/84/87/18248487_38918793_480.jpg",
+    "brand": "ddfjj",
+    "category": "Hats",
+    "desc": "Re-Nylon baseball cap",
+    "details": "This brown baseball cap is crafted from dksfs;lf's Re-Nylon. It's made in Italy with a paneled crown and curved peak then adorned with the iconic enamel triangle logo plaque.",
+    "price": "977",
+    "id": 9
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/15/30/36/31/15303631_26853692_480.jpg",
+    "brand": "ertyuik",
+    "category": "Belt",
+    "desc": "reversible belt",
+    "details": "If you're a black belt in shopping, this one is for you. This reversible belt from prafa is detailed with an engraved logo to the polished steel buckle fastening and it's the perfect accessory to complement your looks with an ultra-sophisticated touch. Also, who doesn't love a two for one deal? Featuring an engraved logo and a polished steel buckle.",
+    "price": "43",
+    "id": 10
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/17/61/01/22/17610122_36887313_480.jpg",
+    "brand": "fghjkl'",
+    "category": "Wallets",
+    "desc": "triangle-logo leather cardholder",
+    "details": "Made in Italy",
+    "price": "567",
+    "id": 11
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/18/34/94/63/18349463_39414168_480.jpg",
+    "brand": "dfjskdfhsl",
+    "category": "Belt",
+    "desc": "buckle-fastening leather belt",
+    "details": "Made in Italy",
+    "price": "987",
+    "id": 12
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/16/48/24/14/16482414_32036198_480.jpg",
+    "brand": "dfjskdfhsldfksdhfs",
+    "category": "Shoes",
+    "desc": "Macro brushed sneakers",
+    "details": "When was the last time that you gave a treat to your feet? Show your soles some love with dksfs;lf;s's Macro brushed sneakers that will provide plenty of pep into your step thanks to its platform sole. This is one gift that keeps on giving.",
+    "price": "098",
+    "id": 13
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/15/74/12/49/15741249_28683400_480.jpg",
+    "brand": "flsjdfklsjfs",
+    "category": "Scarf",
+    "desc": "zipped pocket knitted scarf",
+    "details": "Black is a powerful color, but what about a black knitted scarf from dfs;lfs;lf? Long live ljdf;lsjf. Featuring a ribbed knit, a straight hem, a signature triangular plaque on the front, and a front zipped pocket.",
+    "price": "123",
+    "id": 14
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/16/68/38/02/16683802_32788923_480.jpg",
+    "brand": "kdfsdklfhsdlkfh",
+    "category": "Clothes",
+    "desc": "Re-Nylon cargo pants",
+    "details": "Who says your casual look has to be plain and boring? ;dfks;lfks makes a strong case for looking stylish off-duty with these Re-Nylon cargo pants. It's time to try something new.",
+    "price": "345",
+    "id": 15
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/15/54/32/76/15543276_27832985_480.jpg",
+    "brand": "kdsklfjslkfs",
+    "category": "Clothes",
+    "desc": "logo-plaque single-breasted blazer",
+    "details": "Looking to add a contemporary touch to your look? Then you'll want to check out this nylon blazer from ;fl;sf;lf. Refuse to color outerwear be an afterthought.",
+    "price": "3457",
+    "id": 16
+  },
+  {
+    "image_url": "https://cdn-images.farfetch-contents.com/17/45/24/08/17452408_36242111_480.jpg",
+    "brand": "difjsdifjsl;f",
+    "category": "Hats",
+    "desc": "Re-Nylon abstract-print bucket hat",
+    "details": "Constructed from recycled materials and finished with a distinct abstract print, this dkdlfksd bucket hat speaks to the label's sustainable concerns, simultaneously aligning with the brand's penchant for futuristic, bold designs.",
+    "price": "1",
+    "id": 17
+  }
+]

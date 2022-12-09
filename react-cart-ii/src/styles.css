@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "sans-serif;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.Navbar {
+  background-color: "yellow";
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.AllProducts {
+  margin-bottom: 2rem;
+}
+.Products {
+  width: 90%;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.Products > a {
+  border: 2px solid rgb(110, 45, 45);
+  padding:  1rem;
+  cursor: default;
+  text-decoration: none;
+  color: rgb(179, 28, 28);
+}
+.Products > a > img {
+  width: 90%;
+}
